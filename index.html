@@ -111,6 +111,8 @@
     font-weight: bold;
 
     border-radius: 12px;
+
+    cursor: pointer;
 }
 </style>
 
@@ -199,7 +201,7 @@ Use the navigation above to explore <strong>Notes</strong>, <strong>Bypasses</st
       Expect a cleaner design, better performance, and new features.
     </p>
 
-    <a id="popupButton" href="#">Stay Tuned</a>
+    <div id="popupButton">Stay Tuned</div>
 
   </div>
 
@@ -211,12 +213,20 @@ Use the navigation above to explore <strong>Notes</strong>, <strong>Bypasses</st
 // POPUP LOGIC
 const popup = document.getElementById("officialPopupOverlay");
 const closeBtn = document.getElementById("popupClose");
+const stayBtn = document.getElementById("popupButton");
 
+// show on load
 window.addEventListener("load", () => {
     popup.classList.add("show");
 });
 
+// close X
 closeBtn.addEventListener("click", () => {
+    popup.classList.remove("show");
+});
+
+// close "Stay Tuned" button
+stayBtn.addEventListener("click", () => {
     popup.classList.remove("show");
 });
 </script>
