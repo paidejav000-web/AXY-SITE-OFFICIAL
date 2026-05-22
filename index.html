@@ -1,68 +1,691 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AXY Study Site - Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+/>
+
+<title>AXY Official</title>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap"
+rel="stylesheet"
+/>
+
+<style>
+
+/* =========================
+   ROOT
+========================= */
+
+:root{
+    --gold:#d4af37;
+    --goldGlow:rgba(212,175,55,.5);
+
+    --bg:#050505;
+    --bg2:#0f0f0f;
+
+    --text:#ffffff;
+    --muted:#cfcfcf;
+}
+
+/* =========================
+   BODY
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Rajdhani',sans-serif;
+
+    background:
+    radial-gradient(circle at top,
+    #161616,
+    #050505 70%);
+
+    color:white;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND GRID
+========================= */
+
+.grid{
+
+    position:fixed;
+    inset:0;
+
+    background-image:
+    linear-gradient(
+    rgba(212,175,55,.06) 1px,
+    transparent 1px),
+
+    linear-gradient(
+    90deg,
+    rgba(212,175,55,.06) 1px,
+    transparent 1px);
+
+    background-size:40px 40px;
+
+    z-index:-2;
+}
+
+/* =========================
+   GLOW
+========================= */
+
+.glow{
+
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(212,175,55,.12),
+    transparent 70%
+    );
+
+    top:-120px;
+    right:-120px;
+
+    filter:blur(20px);
+
+    z-index:-1;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    padding:30px 20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    border-bottom:
+    1px solid rgba(212,175,55,.2);
+
+    background:
+    rgba(0,0,0,.45);
+
+    backdrop-filter:blur(8px);
+}
+
+header h1{
+
+    font-size:2rem;
+
+    color:var(--gold);
+
+    text-shadow:
+    0 0 15px var(--goldGlow);
+}
+
+nav{
+
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.25s ease;
+
+    font-size:1.05rem;
+}
+
+nav a:hover{
+
+    color:var(--gold);
+
+    text-shadow:
+    0 0 10px var(--goldGlow);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    text-align:center;
+
+    padding:
+    130px 20px
+    90px;
+}
+
+.hero h2{
+
+    font-size:4rem;
+
+    color:var(--gold);
+
+    text-shadow:
+    0 0 20px var(--goldGlow);
+
+    margin-bottom:20px;
+}
+
+.hero p{
+
+    font-size:1.3rem;
+
+    color:var(--muted);
+
+    max-width:800px;
+
+    margin:auto;
+
+    line-height:1.7;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.heroButtons{
+
+    margin-top:40px;
+
+    display:flex;
+    justify-content:center;
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.heroButtons a{
+
+    padding:
+    14px 30px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.25s ease;
+}
+
+.primaryBtn{
+
+    background:var(--gold);
+
+    color:black;
+}
+
+.secondaryBtn{
+
+    border:2px solid var(--gold);
+
+    color:var(--gold);
+}
+
+.heroButtons a:hover{
+
+    transform:
+    translateY(-3px)
+    scale(1.03);
+
+    box-shadow:
+    0 0 20px var(--goldGlow);
+}
+
+/* =========================
+   INFO SECTION
+========================= */
+
+.info{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:40px 20px 100px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+}
+
+.card{
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(255,255,255,.03),
+    rgba(255,255,255,.01)
+    );
+
+    border:
+    1px solid rgba(212,175,55,.18);
+
+    border-radius:22px;
+
+    padding:30px;
+
+    backdrop-filter:blur(8px);
+
+    transition:.3s ease;
+}
+
+.card:hover{
+
+    transform:
+    translateY(-5px);
+
+    border-color:var(--gold);
+
+    box-shadow:
+    0 0 25px rgba(212,175,55,.2);
+}
+
+.card h3{
+
+    color:var(--gold);
+
+    margin-bottom:15px;
+
+    font-size:1.5rem;
+}
+
+.card p{
+
+    color:#d7d7d7;
+
+    line-height:1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    padding:30px;
+
+    border-top:
+    1px solid rgba(212,175,55,.2);
+
+    background:
+    rgba(0,0,0,.5);
+
+    color:#a8a8a8;
+}
+
+/* =========================
+   POPUP
+========================= */
+
+#officialPopupOverlay{
+
+    position:fixed;
+    inset:0;
+
+    background:
+    rgba(0,0,0,.8);
+
+    backdrop-filter:blur(7px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:99999;
+
+    animation:
+    fadeIn .45s ease;
+}
+
+#officialPopup{
+
+    width:90%;
+    max-width:560px;
+
+    background:
+    linear-gradient(
+    145deg,
+    #050505,
+    #111111
+    );
+
+    border:
+    2px solid var(--gold);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    text-align:center;
+
+    position:relative;
+
+    animation:
+    popupAnim .5s ease;
+
+    box-shadow:
+    0 0 35px rgba(212,175,55,.3),
+    0 0 100px rgba(212,175,55,.12);
+}
+
+#popupClose{
+
+    position:absolute;
+
+    top:14px;
+    right:18px;
+
+    font-size:32px;
+
+    cursor:pointer;
+
+    color:var(--gold);
+
+    transition:.2s ease;
+}
+
+#popupClose:hover{
+
+    color:white;
+
+    transform:scale(1.15);
+}
+
+#officialPopup h1{
+
+    color:var(--gold);
+
+    font-size:2.4rem;
+
+    margin-bottom:20px;
+
+    text-shadow:
+    0 0 18px var(--goldGlow);
+}
+
+#officialPopup p{
+
+    color:#dddddd;
+
+    line-height:1.8;
+
+    font-size:1.05rem;
+}
+
+#popupButton{
+
+    display:inline-block;
+
+    margin-top:28px;
+
+    padding:
+    14px 28px;
+
+    border-radius:14px;
+
+    background:var(--gold);
+
+    color:black;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.25s ease;
+}
+
+#popupButton:hover{
+
+    background:white;
+
+    transform:
+    translateY(-3px);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes popupAnim{
+
+    from{
+        transform:
+        translateY(40px)
+        scale(.9);
+
+        opacity:0;
+    }
+
+    to{
+        transform:
+        translateY(0)
+        scale(1);
+
+        opacity:1;
+    }
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+.hero h2{
+    font-size:2.7rem;
+}
+
+header{
+    flex-direction:column;
+    gap:20px;
+}
+
+}
+
+</style>
+
 </head>
+
 <body>
-<canvas id="bg"></canvas>
+
 <div class="grid"></div>
+<div class="glow"></div>
 
 <header>
-  <h1>AXY Study Site</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="games.html">Games</a>
-    <a href="notes.html">Notes</a>
-    <a href="bypasses.html">Bypasses</a>
-    <a href="music.html">Music</a>
-    <a href="credits.html">Credits</a>
-    <a href="other1.html">Suggestions/Reports</a>
-    <a href="other2.html">Other</a>
-  </nav>
+
+<h1>AXY Official</h1>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Projects</a>
+<a href="#">Updates</a>
+<a href="#">Community</a>
+<a href="#">Contact</a>
+</nav>
+
 </header>
 
 <section class="hero">
-  <h2>Welcome to the Ultimate Study & Game Portal!</h2>
-  <p>Focus. Learn. Play. All in one place — powered by AXY.</p>
+
+<h2>
+AXY Official
+</h2>
+
+<p>
+The next evolution of the AXY platform is almost here.
+A cleaner experience, better performance, and major upgrades
+are currently in development.
+</p>
+
+<div class="heroButtons">
+
+<a class="primaryBtn" href="#">
+Coming June 1st
+</a>
+
+<a class="secondaryBtn" href="#">
+Development Active
+</a>
+
+</div>
+
 </section>
 
-<main>
-<div class="notice">⚠️ <strong>Note:</strong> Games labeled as “Game 1”, “Game 2”, etc. are placeholders and not yet available.
-  Check the <a href="games.html">Games page</a> for all playable titles.</div>
-<p>Use the navigation above to explore <strong>Notes</strong>, <strong>Bypasses</strong>, <strong>Music</strong>, and more.</p>
-</main>
+<section class="info">
 
-<footer>© 2025 AXY Study Site. All rights reserved.</footer>
+<div class="card">
 
-<!-- Theme Box -->
-<div id="themeBox">
-  Theme:
-  <select id="themeSelect">
-    <option value="red">Red</option>
-    <option value="navy">Navy Blue</option>
-    <option value="green">Cyber Green</option>
-    <option value="purple">Purple</option>
-    <option value="custom">Customize...</option>
-  </select>
+<h3>
+New Design
+</h3>
+
+<p>
+A fully redesigned experience with a cleaner black and gold aesthetic,
+better layouts, and smoother navigation.
+</p>
+
 </div>
 
-<!-- Customize Panel -->
-<div id="customPanel">
-  <div><label>Main:</label><input type="color" id="mainColor" value="#ff1e1e"></div>
-  <div><label>Glow:</label><input type="color" id="glowColor" value="#ff3c3c"></div>
-  <div><label>Trail:</label><input type="color" id="trailColor" value="#ff3232"></div>
-  <div><label>Ambient:</label><input type="color" id="ambientColor" value="#ff3232"></div>
-  <div><label>Body BG:</label><input type="color" id="bgColor" value="#190000"></div>
-  <div><label>Hero BG:</label><input type="color" id="heroBgColor" value="#190000"></div>
-  <div><label>Footer BG:</label><input type="color" id="footerBgColor" value="#0a0000"></div>
-  <button id="saveCustom">Save Theme</button>
-  <button id="resetTheme">Reset to Red</button>
+<div class="card">
+
+<h3>
+Better Performance
+</h3>
+
+<p>
+Optimized loading, improved responsiveness,
+and smoother animations across the entire site.
+</p>
+
 </div>
 
-<script src="theme.js"></script>
+<div class="card">
+
+<h3>
+Major Updates
+</h3>
+
+<p>
+New features, updated pages,
+and a more polished platform overall.
+</p>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 AXY Official. All rights reserved.
+</footer>
+
+<!-- =========================
+     POPUP
+========================= -->
+
+<div id="officialPopupOverlay">
+
+<div id="officialPopup">
+
+<div id="popupClose">
+&times;
+</div>
+
+<h1>
+Official Site Coming Soon
+</h1>
+
+<p>
+The official AXY site is currently in development
+and is planned to release on
+<strong style="color:#d4af37;">
+June 1st
+</strong>.
+</p>
+
+<p style="margin-top:15px;">
+Expect major improvements,
+new features,
+cleaner design,
+and a more polished experience.
+</p>
+
+<a id="popupButton" href="#">
+Release Date: June 1st
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================
+   POPUP CLOSE
+========================= */
+
+const popupClose =
+document.getElementById(
+"popupClose"
+);
+
+const popupOverlay =
+document.getElementById(
+"officialPopupOverlay"
+);
+
+popupClose.addEventListener(
+"click",
+() => {
+
+popupOverlay.style.display =
+"none";
+
+}
+);
+
+</script>
+
 </body>
 </html>
