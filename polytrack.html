@@ -1,5 +1,52 @@
 <html>
 <head>
+    <style>
+#popupOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+#popupBox {
+    background: #0b0b0b;
+    border: 2px solid gold;
+    padding: 30px;
+    width: min(600px, 90vw);
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    animation: pop 0.25s ease;
+}
+
+#popupClose {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 28px;
+    color: gold;
+}
+
+#popupBtn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background: gold;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+@keyframes pop {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+</style>
     <base href="https://cdn.jsdelivr.net/gh/AZURE2077/polytrack-beta-0.6.0@main/">
     <script>
         var NativeImage = window.Image;
