@@ -1,14 +1,19 @@
-function initPopup() {
+window.addEventListener("DOMContentLoaded", () => {
+
     const popup = document.getElementById("axyPopupOverlay");
+    if (!popup) return;
+
     const close = document.getElementById("axyPopupClose");
     const btn = document.getElementById("axyPopupButton");
 
-    if (!popup) return;
-
     popup.classList.add("show");
 
-    close.onclick = () => popup.classList.remove("show");
-    btn.onclick = () => popup.classList.remove("show");
-}
+    close?.addEventListener("click", () => {
+        popup.classList.remove("show");
+    });
 
-window.addEventListener("load", initPopup);
+    btn?.addEventListener("click", () => {
+        popup.classList.remove("show");
+    });
+
+});
