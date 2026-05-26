@@ -4,15 +4,128 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>AXY Games</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* =========================
+   BLACK + GOLD POPUP
+========================= */
+
+#officialPopupOverlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(7px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.35s ease;
+}
+
+#officialPopupOverlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#officialPopup {
+    width: 92%;
+    max-width: 950px;
+    height: 85vh;
+
+    background: #0a0a0a;
+
+    border: 2px solid #d4af37;
+    border-radius: 22px;
+
+    padding: 50px;
+
+    color: white;
+    text-align: center;
+
+    box-shadow:
+        0 0 45px rgba(212,175,55,0.5),
+        0 0 120px rgba(212,175,55,0.15);
+
+    position: relative;
+
+    transform: translateY(25px);
+    transition: 0.35s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+#officialPopupOverlay.show #officialPopup {
+    transform: translateY(0);
+}
+
+#popupClose {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+
+    font-size: 32px;
+    cursor: pointer;
+
+    color: #d4af37;
+}
+
+#popupClose:hover {
+    color: white;
+    transform: scale(1.2);
+}
+
+#officialPopup h1 {
+    color: #d4af37;
+    font-size: 3rem;
+}
+
+#officialPopup p {
+    font-size: 1.2rem;
+    color: #ddd;
+    line-height: 1.8;
+}
+
+#popupButton {
+    display: inline-block;
+    margin-top: 25px;
+
+    padding: 14px 28px;
+
+    background: #d4af37;
+    color: black;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+</style>
+
 </head>
+
 <body>
+
 <canvas id="bg"></canvas>
 <div class="grid"></div>
 
 <header>
   <h1>AXY Study Site</h1>
+
   <nav>
     <a href="index.html">Home</a>
     <a href="games.html">Games</a>
@@ -31,8 +144,15 @@
 </section>
 
 <main>
-<div class="notice">⚠️ <strong>Note:</strong> Some games are placeholders; click AXY Clicker to try a demo.</div>
+
+<div class="notice">
+⚠️ <strong>Note:</strong>
+Some games are placeholders;
+click AXY Clicker to try a demo.
+</div>
+
 <ul class="games-grid">
+
 <li><a href="Clicker.html">AXY Clicker</a></li>
 <li><a href="cookie.html">Cookie Clicker</a></li>
 <li><a href="core.html">CoreBall</a></li>
@@ -45,35 +165,118 @@
 <li><a href="EB.Client.V1.0.0R2.WASM.html">ECraft</a></li>
 
 </ul>
+
 </main>
 
-<footer>© 2026 AXY Study Site. All rights reserved.</footer>
+<footer>
+© 2026 AXY Study Site. All rights reserved.
+</footer>
 
 <!-- Theme Box -->
 <div id="themeBox">
-  Theme:
-  <select id="themeSelect">
-    <option value="red">Red</option>
-    <option value="navy">Navy Blue</option>
-    <option value="green">Cyber Green</option>
-    <option value="purple">Purple</option>
-    <option value="custom">Customize...</option>
-  </select>
+
+Theme:
+
+<select id="themeSelect">
+  <option value="red">Red</option>
+  <option value="navy">Navy Blue</option>
+  <option value="green">Cyber Green</option>
+  <option value="purple">Purple</option>
+  <option value="custom">Customize...</option>
+</select>
+
 </div>
 
 <!-- Customize Panel -->
 <div id="customPanel">
-  <div><label>Main:</label><input type="color" id="mainColor" value="#ff1e1e"></div>
-  <div><label>Glow:</label><input type="color" id="glowColor" value="#ff3c3c"></div>
-  <div><label>Trail:</label><input type="color" id="trailColor" value="#ff3232"></div>
-  <div><label>Ambient:</label><input type="color" id="ambientColor" value="#ff3232"></div>
-  <div><label>Body BG:</label><input type="color" id="bgColor" value="#190000"></div>
-  <div><label>Hero BG:</label><input type="color" id="heroBgColor" value="#190000"></div>
-  <div><label>Footer BG:</label><input type="color" id="footerBgColor" value="#0a0000"></div>
+
+  <div>
+    <label>Main:</label>
+    <input type="color" id="mainColor" value="#ff1e1e">
+  </div>
+
+  <div>
+    <label>Glow:</label>
+    <input type="color" id="glowColor" value="#ff3c3c">
+  </div>
+
+  <div>
+    <label>Trail:</label>
+    <input type="color" id="trailColor" value="#ff3232">
+  </div>
+
+  <div>
+    <label>Ambient:</label>
+    <input type="color" id="ambientColor" value="#ff3232">
+  </div>
+
+  <div>
+    <label>Body BG:</label>
+    <input type="color" id="bgColor" value="#190000">
+  </div>
+
+  <div>
+    <label>Hero BG:</label>
+    <input type="color" id="heroBgColor" value="#190000">
+  </div>
+
+  <div>
+    <label>Footer BG:</label>
+    <input type="color" id="footerBgColor" value="#0a0000">
+  </div>
+
   <button id="saveCustom">Save Theme</button>
   <button id="resetTheme">Reset to Red</button>
+
+</div>
+
+<!-- POPUP -->
+<div id="officialPopupOverlay">
+
+  <div id="officialPopup">
+
+    <div id="popupClose">&times;</div>
+
+    <h1>Official Site Coming Soon</h1>
+
+    <p>
+      The new official AXY site is planned to release on
+      <strong style="color:#d4af37;">June 1st</strong>.
+    </p>
+
+    <p>
+      Expect a cleaner design, better performance, and new features.
+    </p>
+
+    <div id="popupButton">Stay Tuned</div>
+
+  </div>
+
 </div>
 
 <script src="theme.js"></script>
+
+<script>
+// POPUP LOGIC
+const popup = document.getElementById("officialPopupOverlay");
+const closeBtn = document.getElementById("popupClose");
+const stayBtn = document.getElementById("popupButton");
+
+// show popup instantly
+window.addEventListener("load", () => {
+    popup.classList.add("show");
+});
+
+// close with X
+closeBtn.addEventListener("click", () => {
+    popup.classList.remove("show");
+});
+
+// close with button
+stayBtn.addEventListener("click", () => {
+    popup.classList.remove("show");
+});
+</script>
+
 </body>
 </html>
