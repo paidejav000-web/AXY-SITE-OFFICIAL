@@ -197,7 +197,39 @@
     <script defer="defer" src="error_screen.bundle.js"></script>
     <script defer="defer" src="main.bundle.js"></script>
 </head>
+    <script>
+window.onload = () => {
+
+    const overlay = document.getElementById("popupOverlay");
+    const close = document.getElementById("popupClose");
+    const btn = document.getElementById("popupBtn");
+
+    function closePopup() {
+        overlay.style.display = "none";
+    }
+
+    close.onclick = closePopup;
+    btn.onclick = closePopup;
+};
+</script>
 <body>
+    <div id="popupOverlay">
+
+  <div id="popupBox">
+
+    <div id="popupClose">&times;</div>
+
+    <h2>Coming Soon</h2>
+
+    <p>This game is part of an upcoming update.</p>
+
+    <p>Stay tuned for new features!</p>
+
+    <div id="popupBtn">Close</div>
+
+  </div>
+
+</div>
     <canvas id="screen"></canvas>
     <div id="ui"></div>
     <div id="transition-layer"></div>
