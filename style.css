@@ -1,56 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-/* Global GUI CSS */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{
-  font-family: 'Rajdhani', sans-serif;
-  background:#000;
-  color:#f0f0f0;
-  overflow-x:hidden;
-  min-height:100vh;
-  position:relative;
+<title>AXY Games</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* =========================
+   BLACK + GOLD POPUP
+========================= */
+
+#officialPopupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.85);
+
+    backdrop-filter: blur(8px);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999999;
 }
 
-/* canvas and grid */
-canvas#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;display:block}
-.grid{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size:60px 60px,60px 60px; animation:gridmove 30s linear infinite; pointer-events:none}
-@keyframes gridmove{from{background-position:0 0,0 0}to{background-position:60px 60px,60px 60px}}
-header{padding:1rem 2rem;position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;transition:background .25s}
-header h1{font-size:1.8rem;font-weight:700;transition:color .25s}
-nav{display:flex;flex-wrap:wrap;gap:0.6rem;align-items:center}
-nav a{color:inherit;text-decoration:none;padding:.5rem .9rem;border-radius:8px;transition:all .18s ease;font-weight:600;letter-spacing:0.6px;border:1px solid transparent}
-.hero{text-align:center;padding:4.2rem 1.5rem;border-radius:16px;margin:3.2rem auto 1.6rem;max-width:980px;backdrop-filter:blur(6px);transition:background .25s,border-color .25s}
-.hero h2{font-size:2.4rem;margin-bottom:.6rem;transition:color .25s}
-.hero p{color:#ccc;font-size:1.05rem}
-.notice{max-width:880px;margin:1.6rem auto;padding:1.1rem;border-radius:10px;text-align:center;font-size:1rem;color:inherit;transition:border-color .2s}
-main{padding:0 1.5rem 3.2rem;text-align:center;color:#ccc}
-footer{text-align:center;padding:1rem;color:#888;font-size:.9rem;letter-spacing:.4px;transition:background .25s,border-color .25s}
-
-/* theme controls */
-#themeBox{position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,.7);padding:10px 12px;border-radius:10px;border:2px solid rgba(255,255,255,.06);z-index:20;color:#fff;font-family:'Rajdhani',sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.5)}
-#themeSelect{background:#111;color:#fff;padding:6px 10px;border-radius:8px;border:none;font-weight:600;cursor:pointer}
-#customPanel{display:none;position:fixed;bottom:80px;right:20px;background:rgba(0,0,0,.86);padding:12px;border-radius:10px;border:2px solid rgba(255,255,255,.06);z-index:21;color:#fff;font-family:'Rajdhani',sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.5)}
-#customPanel div{margin-bottom:8px;display:flex;align-items:center;gap:8px}
-#customPanel label{display:inline-block;width:76px;font-size:.95rem}
-#customPanel input[type=color]{border:none;cursor:pointer;width:44px;height:30px;padding:0}
-#customPanel button{margin-top:6px;padding:7px 10px;border:none;border-radius:8px;background:#111;color:#fff;cursor:pointer;font-weight:700}
-
-/* games grid */
-.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;max-width:1000px;margin:1.2rem auto;list-style:none;padding:0}
-.games-grid li a{display:block;padding:14px;background:rgba(255,255,255,0.03);color:inherit;text-decoration:none;border-radius:10px;font-weight:700;transition:transform .18s,box-shadow .18s}
-.games-grid li a:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
-
-/* clicker */
-#clickerBtn{padding:12px 18px;font-size:1.2rem;border-radius:12px;border:none;cursor:pointer}
-.upgrade{padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.04);border:none;color:inherit;cursor:pointer}
-
-/* notes */
-.notes-grid{max-width:980px;margin:1rem auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.note{background:rgba(255,255,255,0.03);padding:12px;border-radius:10px;text-align:left}
-
-/* responsive tweaks */
-@media(max-width:720px){
-  .hero{padding:2.6rem 1rem}
-  header h1{font-size:1.2rem}
-  nav a{padding:.4rem .6rem;font-size:.95rem}
+#officialPopupOverlay.show {
+    display: flex;
 }
+
+#officialPopup {
+    width: 92%;
+    max-width: 950px;
+    height: 85vh;
+
+    background: #0a0a0a;
+
+    border: 2px solid #d4af37;
+    border-radius: 22px;
+
+    padding: 50px;
+
+    color: white;
+    text-align: center;
+
+    position: relative;
+
+    box-shadow:
+        0 0 45px rgba(212,175,55,0.5),
+        0 0 120px rgba(212,175,55,0.15);
+
+    animation: popupAnim 0.35s ease;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+#popupClose {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+
+    font-size: 32px;
+
+    cursor: pointer;
+
+    color: #d4af37;
+}
+
+#popupClose:hover {
+    color: white;
+}
+
+#officialPopup h1 {
+    color: #d4af37;
+    font-size: 3rem;
+}
+
+#officialPopup p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+#popupButton {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 14px 28px;
+
+    background: #d4af37;
+    color: black;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+@keyframes popupAnim {
+
+    from {
+        transform:
+        scale(0.92)
+        translateY(25px);
+
+        opacity: 0;
+    }
+
+    to {
+        transform:
+        scale(1)
+        translateY(0);
+
+        opacity: 1;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+<div class="grid"></div>
+
+<header>
+
+  <h1>AXY Study Site</h1>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="notes.html">Notes</a>
+    <a href="bypasses.html">Bypasses</a>
+    <a href="music.html">Music</a>
+    <a href="credits.html">Credits</a>
+    <a href="other1.html">Suggestions/Reports</a>
+    <a href="other2.html">Other</a>
+  </nav>
+
+</header>
+
+<section class="hero">
+
+  <h2>All Games</h2>
+
+  <p>
+    Click any game, also updates to this site will no longer happen
+  </p>
+
+</section>
+
+<main>
+
+<div class="notice">
+⚠️ <strong>Note:</strong>
+Some games are placeholders;
+click AXY Clicker to try a demo.
+</div>
+
+<ul class="games-grid">
+
+<li><a href="Clicker.html">AXY Clicker</a></li>
+<li><a href="cookie.html">Cookie Clicker</a></li>
+<li><a href="core.html">CoreBall</a></li>
+<li><a href="polytrack.html">PolyTrack v2</a></li>
+<li><a href="polytrackold.html">Old PolyTrack</a></li>
+<li><a href="clblackjackhhhh.html">Black Jack</a></li>
+<li><a href="arcrashtest2.html">Car Crash Sim 1 (Testing) (placeholder)</a></li>
+<li><a href="chase.html">Binding of Issac(Down)</a></li>
+<li><a href="grind.html">Grind craft</a></li>
+<li><a href="EB.Client.V1.0.0R2.WASM.html">ECraft</a></li>
+
+</ul>
+
+</main>
+
+<footer>
+© 2026 AXY Study Site. All rights reserved.
+</footer>
+
+<!-- Theme Box -->
+
+<div id="themeBox">
+
+  Theme:
+
+  <select id="themeSelect">
+    <option value="red">Red</option>
+    <option value="navy">Navy Blue</option>
+    <option value="green">Cyber Green</option>
+    <option value="purple">Purple</option>
+    <option value="custom">Customize...</option>
+  </select>
+
+</div>
+
+<!-- Customize Panel -->
+
+<div id="customPanel">
+
+  <div>
+    <label>Main:</label>
+    <input type="color" id="mainColor" value="#ff1e1e">
+  </div>
+
+  <div>
+    <label>Glow:</label>
+    <input type="color" id="glowColor" value="#ff3c3c">
+  </div>
+
+  <div>
+    <label>Trail:</label>
+    <input type="color" id="trailColor" value="#ff3232">
+  </div>
+
+  <div>
+    <label>Ambient:</label>
+    <input type="color" id="ambientColor" value="#ff3232">
+  </div>
+
+  <div>
+    <label>Body BG:</label>
+    <input type="color" id="bgColor" value="#190000">
+  </div>
+
+  <div>
+    <label>Hero BG:</label>
+    <input type="color" id="heroBgColor" value="#190000">
+  </div>
+
+  <div>
+    <label>Footer BG:</label>
+    <input type="color" id="footerBgColor" value="#0a0000">
+  </div>
+
+  <button id="saveCustom">
+    Save Theme
+  </button>
+
+  <button id="resetTheme">
+    Reset to Red
+  </button>
+
+</div>
+
+<!-- =========================
+     POPUP
+========================= -->
+
+<div id="officialPopupOverlay">
+
+  <div id="officialPopup">
+
+    <div id="popupClose">
+      &times;
+    </div>
+
+    <h1>
+      Official Site Coming Soon
+    </h1>
+
+    <p>
+      The new official AXY site is planned to release on
+      <strong style="color:#d4af37;">
+        June 1st
+      </strong>.
+    </p>
+
+    <p>
+      Expect a cleaner design, better performance,
+      and new features.
+    </p>
+
+    <div id="popupButton">
+      Stay Tuned
+    </div>
+
+  </div>
+
+</div>
+
+<script src="theme.js"></script>
+
+<script>
+
+window.onload = function () {
+
+    const popup =
+    document.getElementById(
+    "officialPopupOverlay"
+    );
+
+    const closeBtn =
+    document.getElementById(
+    "popupClose"
+    );
+
+    const stayBtn =
+    document.getElementById(
+    "popupButton"
+    );
+
+    // SHOW POPUP
+    popup.classList.add("show");
+
+    // CLOSE X
+    closeBtn.onclick = function () {
+        popup.classList.remove("show");
+    };
+
+    // CLOSE BUTTON
+    stayBtn.onclick = function () {
+        popup.classList.remove("show");
+    };
+
+};
+
+</script>
+
+</body>
+</html>
