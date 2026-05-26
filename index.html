@@ -4,127 +4,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>AXY Games</title>
+<title>AXY Study Site - Home</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
-
-<style>
-
-/* =========================
-   SAFE POPUP SYSTEM
-========================= */
-
-#axyPopupOverlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px);
-
-    display: none;
-
-    justify-content: center;
-    align-items: center;
-
-    z-index: 999999;
-}
-
-#axyPopupOverlay.show {
-    display: flex;
-}
-
-#axyPopupBox {
-    width: 90%;
-    max-width: 900px;
-
-    min-height: 500px;
-
-    background: #0a0a0a;
-
-    border: 2px solid #d4af37;
-    border-radius: 20px;
-
-    padding: 40px;
-
-    color: white;
-    text-align: center;
-
-    position: relative;
-
-    box-shadow:
-        0 0 40px rgba(212,175,55,0.45);
-
-    animation: axyPopupAnim 0.3s ease;
-}
-
-#axyPopupClose {
-    position: absolute;
-
-    top: 15px;
-    right: 20px;
-
-    font-size: 32px;
-
-    cursor: pointer;
-
-    color: #d4af37;
-}
-
-#axyPopupClose:hover {
-    color: white;
-}
-
-#axyPopupBox h1 {
-    color: #d4af37;
-
-    font-size: 3rem;
-
-    margin-top: 20px;
-}
-
-#axyPopupBox p {
-    font-size: 1.2rem;
-
-    line-height: 1.7;
-
-    margin-top: 20px;
-}
-
-#axyPopupButton {
-    display: inline-block;
-
-    margin-top: 35px;
-
-    padding: 14px 28px;
-
-    background: #d4af37;
-
-    color: black;
-
-    border-radius: 12px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-@keyframes axyPopupAnim {
-
-    from {
-        transform: scale(0.95);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-}
-
-</style>
-
+<link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
@@ -133,9 +18,7 @@
 <div class="grid"></div>
 
 <header>
-
   <h1>AXY Study Site</h1>
-
   <nav>
     <a href="index.html">Home</a>
     <a href="games.html">Games</a>
@@ -146,182 +29,42 @@
     <a href="other1.html">Suggestions/Reports</a>
     <a href="other2.html">Other</a>
   </nav>
-
 </header>
 
 <section class="hero">
-
-  <h2>All Games</h2>
-
-  <p>
-    Click any game, also updates to this site will no longer happen
-  </p>
-
+  <h2>Welcome to the Ultimate Study & Game Portal!</h2>
+  <p>Focus. Learn. Play. All in one place — powered by AXY.</p>
 </section>
 
 <main>
-
 <div class="notice">
-⚠️ <strong>Note:</strong>
-Some games are placeholders;
-click AXY Clicker to try a demo.
+⚠️ Games are placeholders.
 </div>
-
-<ul class="games-grid">
-
-<li><a href="Clicker.html">AXY Clicker</a></li>
-<li><a href="cookie.html">Cookie Clicker</a></li>
-<li><a href="core.html">CoreBall</a></li>
-<li><a href="polytrack.html">PolyTrack v2</a></li>
-<li><a href="polytrackold.html">Old PolyTrack</a></li>
-<li><a href="clblackjackhhhh.html">Black Jack</a></li>
-<li><a href="arcrashtest2.html">Car Crash Sim 1 (Testing) (placeholder)</a></li>
-<li><a href="chase.html">Binding of Issac(Down)</a></li>
-<li><a href="grind.html">Grind craft</a></li>
-<li><a href="EB.Client.V1.0.0R2.WASM.html">ECraft</a></li>
-
-</ul>
-
 </main>
 
-<footer>
-© 2026 AXY Study Site. All rights reserved.
-</footer>
+<footer>© 2025 AXY Study Site</footer>
 
-<!-- Theme Box -->
-
-<div id="themeBox">
-
-Theme:
-
-<select id="themeSelect">
-  <option value="red">Red</option>
-  <option value="navy">Navy Blue</option>
-  <option value="green">Cyber Green</option>
-  <option value="purple">Purple</option>
-  <option value="custom">Customize...</option>
-</select>
-
-</div>
-
-<!-- Customize Panel -->
-
-<div id="customPanel">
-
-<div>
-<label>Main:</label>
-<input type="color" id="mainColor" value="#ff1e1e">
-</div>
-
-<div>
-<label>Glow:</label>
-<input type="color" id="glowColor" value="#ff3c3c">
-</div>
-
-<div>
-<label>Trail:</label>
-<input type="color" id="trailColor" value="#ff3232">
-</div>
-
-<div>
-<label>Ambient:</label>
-<input type="color" id="ambientColor" value="#ff3232">
-</div>
-
-<div>
-<label>Body BG:</label>
-<input type="color" id="bgColor" value="#190000">
-</div>
-
-<div>
-<label>Hero BG:</label>
-<input type="color" id="heroBgColor" value="#190000">
-</div>
-
-<div>
-<label>Footer BG:</label>
-<input type="color" id="footerBgColor" value="#0a0000">
-</div>
-
-<button id="saveCustom">
-Save Theme
-</button>
-
-<button id="resetTheme">
-Reset to Red
-</button>
-
-</div>
-
-<!-- =========================
-     POPUP
-========================= -->
-
+<!-- POPUP (SAFE GLOBAL OVERLAY) -->
 <div id="axyPopupOverlay">
 
   <div id="axyPopupBox">
 
-    <div id="axyPopupClose">
-      &times;
-    </div>
+    <div id="axyPopupClose">&times;</div>
 
-    <h1>
-      Official Site Coming Soon
-    </h1>
+    <h1>Official Site Coming Soon</h1>
 
-    <p>
-      The new official AXY site releases
-      June 1st.
-    </p>
+    <p>The new official AXY site releases June 1st.</p>
 
-    <p>
-      Expect a cleaner design,
-      better performance,
-      and new features.
-    </p>
+    <p>Expect a cleaner design, better performance, and new features.</p>
 
-    <div id="axyPopupButton">
-      Stay Tuned
-    </div>
+    <div id="axyPopupButton">Stay Tuned</div>
 
   </div>
 
 </div>
 
 <script src="theme.js"></script>
-
-<script>
-
-window.onload = function () {
-
-    const popup =
-    document.getElementById(
-    "axyPopupOverlay"
-    );
-
-    const close =
-    document.getElementById(
-    "axyPopupClose"
-    );
-
-    const button =
-    document.getElementById(
-    "axyPopupButton"
-    );
-
-    popup.classList.add("show");
-
-    close.onclick = function () {
-        popup.classList.remove("show");
-    };
-
-    button.onclick = function () {
-        popup.classList.remove("show");
-    };
-
-};
-
-</script>
+<script src="popup.js"></script>
 
 </body>
 </html>
